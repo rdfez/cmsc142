@@ -9,14 +9,21 @@ gcc sort.c
 # check one iteration (descending, input size x)
 # ./a.out "2" "1" >> output.txt
 
-# 5 input cases
-for (( i=0; i<5; i++)) do
-  # 4 sizes
-  for (( j=1; j<=8; j=j*2)) do
-    # 3 iterations/runs
-    for (( k=0; k<3; k++)) do
-      ./a.out "$i" "$j" >> output.txt
+# sort_algos=("isort" "shsort" "msort" "bsort" "ssort" "qsort" "qsort1" "hsort")
+sort_algos=("isort" "shsort" "msort" "bsort" "ssort" "qsort" "qsort1")
+
+for str in ${sort_algos[@]}; do
+  echo $str >> output.txt
+  # 5 input cases
+  for (( i=0; i<5; i++)) do
+    # 4 sizes
+    for (( j=1; j<=8; j=j*2)) do
+      # 3 iterations/runs
+      for (( k=0; k<3; k++)) do
+        ./a.out "$i" "$j" $str>> output.txt
+      done
+      echo "" >> output.txt
     done
-    echo "" >> output.txt
   done
+  echo "" >> output.txt
 done
