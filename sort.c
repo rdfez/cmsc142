@@ -130,14 +130,42 @@ void ssort(int a[], int n){
     }
 }
 
-// quick sort
-// own quick sort
+// for own qsort
+int partition(int a[], int low, int high){
+    int pivot = a[high];
+    int i = (low-1);
+
+    for(int j=low;j<high;j++){
+        if(a[j]<=pivot){
+            i++;
+            swap(&a[i],&a[j]);
+        }
+    }
+    
+    swap(&a[i+1],&a[high]);
+    return (i+1);
+}
+
+// own qsort
+void qsort1(int a[], int low, int high){
+    if(low<high){
+        int pi = partition(a,low,high);
+        qsort1(a,low,pi-1);
+        qsort1(a,pi+1,high);
+    }
+}
+
+// for built in qsort
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
 // heap sort
 
 int main(int argc,char *argv[]){
-    char* type = argv[1];
+    char *type = argv[1];
     int size = atoi(argv[2]);
-
+    char *sort_algo = argv[2]; 
     // int n=10;
     int n=10000*(size);
     int a[n], i;
@@ -167,14 +195,23 @@ int main(int argc,char *argv[]){
 
     t1 = clock();
     // sorting algorithms
-    isort(a,n);
-    // shsort(a,n);
-    // msort(a,n);
-    // bsort(a,n);
-    // ssort(a,n);
-    // qsort();
-    // qsort2();
-    // hsort();
+
+    if (sort_algo == "isort")
+        isort(a,n);
+    else if (sort_algo == "shsort")
+        shsort(a,n);
+    else if (sort_algo == "msort")
+        msort(a,n);
+    else if (sort_algo == "bsort")
+        bsort(a,n);
+    else if (sort_algo == "ssort")
+        ssort(a,n);
+    else if (sort_algo == "qsort")
+        qsort(a, n, sizeof(int), compare);
+    else if (sort_algo == "qsort1")
+        qsort1(a,0,n-1);
+    else if (sort_algo == "hsort")
+        qsort1(a,0,n-1);
     t2 = clock();
 
     // output(a,n);
