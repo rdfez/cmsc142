@@ -4,7 +4,7 @@ gcc sort.c -o sort
 
 # ./a.out <char input_case> <int size> <char sort>
 sort_algos=("isort" "shsort" "msort" "bsort" "ssort" "qsort" "qsort1" "hsort")
-input_case=("asc" "desc" "rand1" "rand2" "rand3")
+input_case=("asc" "rand1" "rand2" "rand3" "desc")
 # size = [x, 2x, 4x, 8x]
 
 # check one iteration (descending, input size x)
