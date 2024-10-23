@@ -14,10 +14,10 @@ for sort in ${sort_algos[@]}; do
   echo $sort >> output.txt
   for case in ${input_case[@]}; do
     # echo input case: $case >> output.txt
-    for (( j=1; j<=8; j=j*2)) do  # 4 sizes
+    for (( i=1; i<=8; i=i*2)) do  # 4 sizes
       # echo x$j >> output.txt
       for (( k=0; k<3; k++)) do   # 3 iterations/runs
-        ./sort $case 1 $sort>> output.txt
+        ./sort $case $i $sort>> output.txt
       done
       echo "" >> output.txt
     done
